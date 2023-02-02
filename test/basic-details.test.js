@@ -1,11 +1,24 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import { stub } from 'sinon';
+import  Sinon , { stub } from 'sinon';
 import '../src/LoanBasicDetails/BasicDetails.js';
 
 const el = await fixture(html `<basic-details></basic-details>`);
 
 describe('Basic details', () => {
   // Write test cases inside this block
+  after(function(){
+    // console.log("-----After the test suit-----")
+  });
+  before(function(){
+    // console.log("-----Before the test suit-----")
+  });
+  beforeEach(function(){
+    // console.log("-----Before Each the test suit-----")
+  });
+  afterEach(function(){
+    // console.log("-----After Each the test suit-----")
+  });
+
   it('can instantiate an element', async () => {
     const el = await fixture('<div class="form-basic"></div>');
     expect(el.getAttribute('class')).to.equal('form-basic');
@@ -46,5 +59,28 @@ describe('Basic details', () => {
   });
   it('Checking for type', async () => {
     expect(el.type).to.be.null;
+  });
+
+  it('should render title', async () => {
+    const h2 = el.shadowRoot.querySelector('h2');
+    expect(h2).to.exist;
+  });
+
+  it('spy _numToWord function called', async () => {
+    const spy = Sinon.spy(el, '_numToWord');
+    el._numToWord();
+    Sinon.assert.calledOnce(spy);
+  });
+
+  it('spy _captureDetails function called', async () => {
+    const spy = Sinon.spy(el, '_captureDetails');
+    el._captureDetails();
+    Sinon.assert.calledOnce(spy);
+  });
+
+  it('spy _toDashboard function called', async () => {
+    const spy = Sinon.spy(el, '_toDashboard');
+    el._toDashboard();
+    Sinon.assert.calledOnce(spy);
   });
 });

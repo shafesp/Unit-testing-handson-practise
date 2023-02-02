@@ -1,5 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-// import { stub } from 'sinon';
+import  Sinon , { stub } from 'sinon';
 import '../src/SuccessAndError/Success.js';
 import '../src/SuccessAndError/Error.js';
 
@@ -27,6 +27,17 @@ describe('Success screen ', () => {
   it('works', async () => {
     expect(el).to.be.accessible();
   });
+
+  it('should render title', async () => {
+    const h2 = el.shadowRoot.querySelector('h2');
+    expect(h2).to.exist;
+  });
+
+  it('spy _toHome function called', async () => {
+    const spy = Sinon.spy(el, '_toHome');
+    el._toHome();
+    Sinon.assert.calledOnce(spy);
+  });
 });
 
 describe('error screen', () => {
@@ -49,4 +60,15 @@ describe('error screen', () => {
   it('works', async () => {
     expect(el1).to.be.accessible();
   });
+
+  it('should render title', async () => {
+    const h2 = el.shadowRoot.querySelector('h2');
+    expect(h2).to.exist;
+  });
+
+  // it('spy _toHome function called', async () => {
+  //   const spy = Sinon.spy(el, '_toHome');
+  //   el._toHome();
+  //   Sinon.assert.calledOnce(spy);
+  // });
 });

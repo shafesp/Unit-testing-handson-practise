@@ -1,7 +1,8 @@
 import { html, fixture, expect } from '@open-wc/testing';
+import  Sinon , { stub } from 'sinon';
 import '../src/LoanEMIDetails/LoanEMIDetails.js';
 
-const el = await fixture(html `<loanemi-details></loanemi-details>`);
+const el = await fixture(html`<loanemi-details></loanemi-details>`);
 
 describe('Loan EMI details', () => {
   // Write test cases inside this block
@@ -36,5 +37,21 @@ describe('Loan EMI details', () => {
 
   it('Checking for _data', async () => {
     expect(el._data).to.be.equal('');
+  });
+
+  it('should render title', async () => {
+    const h2 = el.shadowRoot.querySelector('h2');
+    expect(h2).to.exist;
+  });
+
+  it('spy _toBasicDetails function called', async () => {
+    const spy = Sinon.spy(el, '_toBasicDetails');
+    el._toBasicDetails();
+    Sinon.assert.calledOnce(spy);
+  });
+  it('spy _toCustomer function called', async () => {
+    const spy = Sinon.spy(el, '_toCustomer');
+    el._toCustomer();
+    Sinon.assert.calledOnce(spy);
   });
 });

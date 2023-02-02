@@ -1,5 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import { stub } from 'sinon';
+import  Sinon , { stub } from 'sinon';
 import '../src/Customer/Customer-details.js';
 
 const el = await fixture(html `<customer-details></customer-details>`);
@@ -33,5 +33,16 @@ describe('customer details', () => {
 
   it('works', async () => {
     expect(el).to.be.accessible();
+  });
+
+  it('should render title', async () => {
+    const h2 = el.shadowRoot.querySelector('h2');
+    expect(h2).to.exist;
+  });
+
+  it('spy _toEmidetails function called', async () => {
+    const spy = Sinon.spy(el, '_toEmidetails');
+    el._toEmidetails();
+    Sinon.assert.calledOnce(spy);
   });
 });

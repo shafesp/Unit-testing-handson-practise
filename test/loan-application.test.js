@@ -1,8 +1,8 @@
 import { html, fixture, expect } from '@open-wc/testing';
-
+import  Sinon , { stub } from 'sinon';
 import '../loan-application.js';
 
-let el;
+const el = await fixture(html`<loan-application></loan-application>`);
 
 describe('LoanApplication', () => {
   // Write test cases inside this block
@@ -26,5 +26,16 @@ describe('LoanApplication', () => {
     expect(el).to.be.accessible();
   });
 
-  
+  it('Checking for title', async () => {
+    expect(el.title).to.be.equal('Hey there');
+  });
+  it('Checking for counter', async () => {
+    expect(el.counter).to.be.equal(5);
+  });
+
+  it('spy __increment function called', async () => {
+    const spy = Sinon.spy(el, '__increment');
+    el.__increment();
+    Sinon.assert.calledOnce(spy);
+  });
 });
