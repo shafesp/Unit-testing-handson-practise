@@ -4,6 +4,7 @@ import '../src/Customer/Customer-details.js';
 
 const el = await fixture(html `<customer-details></customer-details>`);
 
+
 describe('customer details', () => {
   // Write test cases inside this block
   it('can instantiate an element', async () => {
