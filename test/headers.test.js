@@ -1,8 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import  Sinon , { stub } from 'sinon';
 import '../src/header/Header.js';
+import { Header } from '../src/header/Header.js';
+var myObj = new Header();
 
 const el = await fixture(html `<loan-header></loan-header>`);
+const button = el.shadowRoot.querySelectorAll('button');
 
 describe('loan-header', () => {
   // Write test cases inside this block
@@ -33,5 +36,18 @@ describe('loan-header', () => {
   
   it('works', async () => {
     expect(el).to.be.accessible();
+  });
+
+  xit('spy localeChanged function called', async () => {
+    var e = Sinon.spy();
+    myObj.localeChanged(e);
+    expect(e.localeChanged).to.be.true;
+  })
+
+  it('spy localeChanged function called', async () => {
+    const spy = Sinon.spy(el, "localeChanged");
+    button[0].click();
+    expect(spy.calledOnce).to.be.true;
+    spy.restore();
   });
 });

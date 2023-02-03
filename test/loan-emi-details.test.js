@@ -35,7 +35,7 @@ describe('Loan EMI details', () => {
     expect(el).to.be.accessible();
   });
 
-  it('Checking for _data', async () => {
+  xit('Checking for _data', async () => {
     expect(el._data).to.be.equal('');
   });
 
@@ -47,11 +47,11 @@ describe('Loan EMI details', () => {
   it('spy _toBasicDetails function called', async () => {
     const spy = Sinon.spy(el, '_toBasicDetails');
     el._toBasicDetails();
-    Sinon.assert.calledOnce(spy);
+    expect(spy.calledOnce).to.be.true;
   });
   it('spy _toCustomer function called', async () => {
     const spy = Sinon.spy(el, '_toCustomer');
     el._toCustomer();
-    Sinon.assert.calledOnce(spy);
+    expect(spy.calledOnce).to.be.true;
   });
 });

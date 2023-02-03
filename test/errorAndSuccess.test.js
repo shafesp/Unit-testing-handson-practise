@@ -6,6 +6,10 @@ import '../src/SuccessAndError/Error.js';
 const el = await fixture(html `<loan-success></loan-success>`);
 const el1 = await fixture(html `<loan-error></loan-error>`);
 
+beforeEach(function(){
+  Sinon.restore();
+});
+
 
 describe('Success screen ', () => {
   // Write test cases inside this block
@@ -36,7 +40,7 @@ describe('Success screen ', () => {
   it('spy _toHome function called', async () => {
     const spy = Sinon.spy(el, '_toHome');
     el._toHome();
-    Sinon.assert.calledOnce(spy);
+    expect(spy.calledOnce).to.be.true;
   });
 });
 
@@ -66,9 +70,9 @@ describe('error screen', () => {
     expect(h2).to.exist;
   });
 
-  // it('spy _toHome function called', async () => {
-  //   const spy = Sinon.spy(el, '_toHome');
-  //   el._toHome();
-  //   Sinon.assert.calledOnce(spy);
-  // });
+  it('spy _toHome function called', async () => {
+    const spy = Sinon.spy(el, '_toHome');
+    el._toHome();
+    expect(spy.calledOnce).to.be.true;
+  });
 });

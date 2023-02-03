@@ -36,6 +36,6 @@ describe('LoanApplication', () => {
   it('spy __increment function called', async () => {
     const spy = Sinon.spy(el, '__increment');
     el.__increment();
-    Sinon.assert.calledOnce(spy);
+    expect(spy.calledOnce).to.be.true;
   });
 });

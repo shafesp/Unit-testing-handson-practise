@@ -43,6 +43,6 @@ describe('customer details', () => {
   it('spy _toEmidetails function called', async () => {
     const spy = Sinon.spy(el, '_toEmidetails');
     el._toEmidetails();
-    Sinon.assert.calledOnce(spy);
+    expect(spy.calledOnce).to.be.true;
   });
 });

@@ -69,18 +69,18 @@ describe('Basic details', () => {
   it('spy _numToWord function called', async () => {
     const spy = Sinon.spy(el, '_numToWord');
     el._numToWord();
-    Sinon.assert.calledOnce(spy);
+    expect(spy.calledOnce).to.be.true;
   });
 
   it('spy _captureDetails function called', async () => {
     const spy = Sinon.spy(el, '_captureDetails');
     el._captureDetails();
-    Sinon.assert.calledOnce(spy);
+    expect(spy.calledOnce).to.be.true;
   });
 
   it('spy _toDashboard function called', async () => {
     const spy = Sinon.spy(el, '_toDashboard');
     el._toDashboard();
-    Sinon.assert.calledOnce(spy);
+    expect(spy.calledOnce).to.be.true;
   });
 });
