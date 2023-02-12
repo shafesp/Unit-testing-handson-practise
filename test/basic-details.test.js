@@ -1,6 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import  Sinon , { stub } from 'sinon';
 import '../src/LoanBasicDetails/BasicDetails.js';
+import { Required } from '@lion/form-core';
 
 const el = await fixture(html `<basic-details></basic-details>`);
 
@@ -83,4 +84,11 @@ describe('Basic details', () => {
     el._toDashboard();
     expect(spy.calledOnce).to.be.true;
   });
+
+  it('Checking for empty field validation', () => {
+    const type = el.shadowRoot.querySelector('lion-input-amount');
+    const amount = new Required();
+    const errorMessage = amount._getMessage();
+    expect(errorMessage).to.not.equal();
+});
 });
